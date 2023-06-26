@@ -1,0 +1,61 @@
+name: zodz_bmi_calculator
+description: Easily calculate your Body Mass Index (BMI) by entering your height and weight.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.3 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+  flutter_launcher_icons:
+
+  get:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Anek Latin
+      fonts:
+        - asset: assets/fonts/AnekLatin-Bold.ttf
+        - asset: assets/fonts/AnekLatin-Regular.ttf
+
+  assets:
+    - assets/images/maleavatar.png
+    - assets/images/femaleavatar.png
+    - assets/images/normal.png
+    - assets/images/obesity.png
+    - assets/images/overweight.png
+    - assets/images/underweight.png
+    - assets/images/icon.png
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icon.png"
+  min_sdk_android: 16 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/images/icon.png"
+    background_color: "#ffffffff"
+    theme_color: "#FF4C4ADE"
+  windows:
+    generate: true
+    image_path: "assets/images/icon.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/images/icon.png"
