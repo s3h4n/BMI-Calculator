@@ -26,7 +26,7 @@ class BMIIconButton extends StatelessWidget {
   final _foreground = MaterialStateProperty.all(KColor.kPrimaryColor);
 
   /// The button background color.
-  final _background = MaterialStateProperty.all(KColor.kWhite);
+  final _background = MaterialStateProperty.all(KColor.kAccentColor);
 
   /// The button shape.
   final _shape = MaterialStateProperty.all(

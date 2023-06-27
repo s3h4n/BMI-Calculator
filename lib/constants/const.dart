@@ -36,7 +36,7 @@ class KColor {
 class KLayout {
   static const kPrimarySpace = 16.0;
   static const kLargeSpace = 30.0;
-  static const kPrimaryRadius = 12.5;
+  static const kPrimaryRadius = 15.0;
   static const kLargeRadius = 30.0;
   static const kPrimaryHeight = 64.0;
   static const kRadiusAll = BorderRadius.all(Radius.circular(kPrimaryRadius));
@@ -67,11 +67,15 @@ class KTheme {
 
   static const kInputBorderSelectedStyle = OutlineInputBorder(
     borderRadius: KLayout.kRadiusAll,
-    borderSide: BorderSide(color: KColor.kPrimaryColor),
+    borderSide: BorderSide(
+      color: KColor.kPrimaryColor,
+      width: 1.5,
+    ),
   );
 
   static const kInputBorder = InputDecoration(
-    fillColor: KColor.kWhite,
+    fillColor: KColor.kAccentColor,
+    focusColor: KColor.kWhite,
     filled: true,
     border: kInputBorderStyle,
     focusedBorder: kInputBorderSelectedStyle,

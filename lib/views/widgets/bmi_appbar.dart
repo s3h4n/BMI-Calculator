@@ -25,7 +25,7 @@ class BMIAppBar extends StatelessWidget implements PreferredSizeWidget {
   final _background = KColor.kBlack;
 
   /// The foreground color.
-  final _foreground = KColor.kAccentColor;
+  final _foreground = KColor.kWhite;
 
   /// The title text style.
   final _titleStyle = const TextStyle(

@@ -45,7 +45,7 @@ class BMIMeasurementInput extends StatefulWidget {
 
 class _BMIMeasurementInputState extends State<BMIMeasurementInput> {
   /// The background color of the widget.
-  final _background = KColor.kWhite;
+  final _background = KColor.kAccentColor;
 
   /// The border radius of the widget.
   final _radius = KLayout.kRadiusAll;

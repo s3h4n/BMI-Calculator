@@ -46,7 +46,7 @@ class BMISliderThumbShape extends SliderComponentShape {
     final Canvas canvas = context.canvas;
 
     final paint = Paint()
-      ..color = KColor.kWhite
+      ..color = KColor.kAccentColor
       ..style = PaintingStyle.fill;
 
     final double thumbPosition = (parentBox.size.width / 2) - thumbRadius;

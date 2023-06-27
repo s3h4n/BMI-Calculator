@@ -5,28 +5,36 @@ import 'package:zodz_bmi_calculator/models/user_model.dart';
 import 'package:zodz_bmi_calculator/views/widgets/bmi_appbar.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({
+  ResultScreen({
     Key? key,
     required this.user,
   }) : super(key: key);
 
   final UserModel user;
-  final String _screenTitle = "BMI Results";
-  final String _bmiLabel = "BMI Score";
-  final String _ageLabel = "Age";
-  final String _heightLabel = "Height";
-  final String _weightLabel = "Weight";
-  final double _imageHeight = 200.0;
-  final BoxDecoration _userCardStyle = const BoxDecoration(
+  final _screenTitle = "BMI Results";
+  final _bmiLabel = "BMI Score";
+  final _ageLabel = "Age";
+  final _heightLabel = "Height";
+  final _weightLabel = "Weight";
+  final _imageHeight = 200.0;
+  final _background = KColor.kWhite;
+  final _userCardStyle = const BoxDecoration(
     borderRadius: KLayout.kLargeRadiusAll,
     color: KColor.kPrimaryColor,
     // gradient: KColor.kPrimaryGradient,
   );
+  final _weightCardStyle = const BoxDecoration(
+    borderRadius: KLayout.kLargeRadiusAll,
+    color: KColor.kBlack,
+    // gradient: KColor.kBlackGradient,
+  );
+  final _weightCardTextStyle = KFont.kBodyDark;
+  final _weightCardTitleStyle = KFont.kMediumBold;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KColor.kAccentColor,
+      backgroundColor: _background,
       appBar: BMIAppBar(title: _screenTitle),
       body: SingleChildScrollView(
         child: Container(
@@ -173,29 +181,26 @@ class ResultScreen extends StatelessWidget {
               // Weight class information card
               Container(
                 padding: KLayout.kLargePaddingAll,
-                decoration: const BoxDecoration(
-                  color: KColor.kWhite,
-                  // gradient: KColor.kBlackGradient,
-                  borderRadius: KLayout.kLargeRadiusAll,
-                ),
+                decoration: _weightCardStyle,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Obx(
                       () => Text(
                         user.bmiClass.value,
-                        style: KFont.kMediumBold
-                            .copyWith(color: KColor.kPrimaryColor),
+                        style: _weightCardTitleStyle,
                       ),
                     ),
                     Obx(
                       () => Text(
                         "BMI Value ${user.bmiValue}",
+                        style: _weightCardTextStyle,
                       ),
                     ),
                     KLayout.kAddYGap,
                     Obx(() => Text(
                           user.bmiDescription.value,
+                          style: _weightCardTextStyle,
                         )),
                   ],
                 ),

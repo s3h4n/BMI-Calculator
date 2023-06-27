@@ -25,10 +25,10 @@ class BMISelectOption extends StatelessWidget {
   final void Function() onTap;
 
   /// The background color when the option is selected.
-  final _selectedBackground = KColor.kPrimaryColor.withAlpha(30);
+  final _selectedBackground = KColor.kPrimaryColor;
 
   /// The background color when the option is not selected.
-  final _defaultBackground = KColor.kWhite;
+  final _defaultBackground = KColor.kAccentColor;
 
   /// The border color when the option is selected.
   final _selectedBorder = KColor.kPrimaryColor;

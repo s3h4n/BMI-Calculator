@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _maxWeightValue = 210.0;
   final _minHeightValue = 80.0;
   final _maxHeightValue = 280.0;
-  final _background = KColor.kAccentColor;
+  final _background = KColor.kWhite;
 
   final TextEditingController _uDOBController = TextEditingController();
   final TextEditingController _uNameController = TextEditingController();
