@@ -16,14 +16,12 @@ class ResultScreen extends StatelessWidget {
   final String _ageLabel = "Age";
   final String _heightLabel = "Height";
   final String _weightLabel = "Weight";
-
+  final double _imageHeight = 200.0;
   final BoxDecoration _userCardStyle = const BoxDecoration(
     borderRadius: KLayout.kLargeRadiusAll,
     color: KColor.kPrimaryColor,
     // gradient: KColor.kPrimaryGradient,
   );
-
-  final double _imageHeight = 200.0;
 
   @override
   Widget build(BuildContext context) {
@@ -58,13 +56,29 @@ class ResultScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  user.name.value,
-                                  style: KFont.kMediumBold,
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: Text(
+                                    user.name.value.capitalize.toString(),
+                                    style: KFont.kMediumBold,
+                                    overflow: TextOverflow.fade,
+                                    maxLines: 1,
+                                    softWrap: false,
+                                  ),
                                 ),
-                                Text(
-                                  "${user.addressLine1.value}, ${user.addressLine2.value},\n${user.town.value}.",
-                                  style: KFont.kBodyDark,
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.5,
+                                  child: Text(
+                                    "${user.addressLine1.value}, ${user.addressLine2.value}, ${user.town.value}."
+                                        .capitalize
+                                        .toString(),
+                                    style: KFont.kBodyDark,
+                                    overflow: TextOverflow.fade,
+                                    maxLines: 2,
+                                    softWrap: true,
+                                  ),
                                 ),
                               ],
                             ),

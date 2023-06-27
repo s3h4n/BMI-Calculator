@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:zodz_bmi_calculator/constants/const.dart';
 
+/// Represents a user in the BMI calculator.
 class UserModel {
   UserModel({
     name,
@@ -13,6 +14,7 @@ class UserModel {
     weight,
   });
 
+  // Observable variables using GetX for reactivity
   var name = "".obs;
   var addressLine1 = "".obs;
   var addressLine2 = "".obs;
@@ -26,11 +28,13 @@ class UserModel {
   var bmiDescription = "".obs;
   var bmiImage = "".obs;
 
+  /// Calculates and returns the BMI value based on the user's weight and height.
   double getBMIValue() {
     double result = weight / ((height / 100) * (height / 100));
     return double.parse(result.toStringAsFixed(2));
   }
 
+  /// Calculates and returns the age of the user based on their date of birth.
   int getAge() {
     DateTime currentDate = DateTime.now();
     List<String> dobParts = dob.split("-");
@@ -48,6 +52,7 @@ class UserModel {
     return age;
   }
 
+  /// Updates the BMI-related properties based on the calculated BMI value.
   void update() {
     bmiValue.value = getBMIValue();
     if (bmiValue < KBMILevel.level1[0]) {

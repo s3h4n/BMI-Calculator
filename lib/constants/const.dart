@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class KApp {
   static const kName = "BMI Calculator";
+  static const kAuthor = "S3H4N";
+  static const kIcon = "assets/images/icon.png";
+  static const kFooter = "Made with Flutter.";
 }
 
 class KColor {
@@ -76,11 +79,6 @@ class KTheme {
     counterStyle: TextStyle(height: double.minPositive),
     counterText: "",
   );
-
-  static const kButtonStyle = BoxDecoration(
-    color: KColor.kPrimaryColor,
-    borderRadius: KLayout.kRadiusAll,
-  );
 }
 
 class KFont {
@@ -125,31 +123,31 @@ class KBMILevel {
   static const _kImageDir = "assets/images";
   static const level1 = <dynamic>[
     18.5,
-    "Underweight",
+    "Underweight 🌱",
     "$_kImageDir/underweight.png",
     "Being underweight may indicate insufficient body fat and muscle mass, which can lead to weakened immune function, nutrient deficiencies, and decreased energy levels. It's important for individuals in this weight class to focus on consuming a balanced diet to promote healthy weight gain and muscle development."
   ];
   static const level2 = <dynamic>[
     25.0,
-    "Normal Weight",
+    "Normal Weight 🌟",
     "$_kImageDir/normal.png",
     "A healthy weight range indicating balanced body composition, reducing the risk of chronic diseases. Maintain it with regular exercise and a balanced diet.",
   ];
   static const level3 = <dynamic>[
     30.0,
-    "Overweight",
+    "Overweight 🤔",
     "$_kImageDir/overweight.png",
     "Accumulated excess body weight, increasing the risk of heart disease, diabetes, and joint problems. Address it through healthy habits and gradual weight loss.",
   ];
   static const level4 = <dynamic>[
     40.0,
-    "Obesity",
+    "Obesity 🚧",
     "$_kImageDir/obesity.png",
     "Excessive body fat, with a BMI of 30 or higher. Raises the risk of heart disease, type 2 diabetes, cancer, and musculoskeletal disorders. Comprehensive management required for weight loss and reducing complications.",
   ];
   static const level5 = <dynamic>[
     null,
-    "Severe Obesity",
+    "Severe Obesity 📈",
     "$_kImageDir/obesity.png",
     "BMI of 40 or higher, posing significant health risks like heart disease, diabetes, and decreased quality of life. Treatment involves lifestyle changes, medical interventions, and professional guidance for better health outcomes.",
   ];

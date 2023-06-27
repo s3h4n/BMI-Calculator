@@ -2,34 +2,58 @@ import 'package:flutter/material.dart';
 import 'package:zodz_bmi_calculator/constants/const.dart';
 import 'bmi_text_input.dart';
 
-class BMIDateTimePicker extends StatefulWidget {
-  const BMIDateTimePicker({
+/// A custom date picker widget for BMI Calculator app.
+class BMIDatePicker extends StatefulWidget {
+  /// Creates a custom [BMIDatePicker].
+  ///
+  /// [label] is the label of this input field.
+  /// [controller] is the controller to handle input field.
+  /// [onChange] is the callback function to execute when user selects a date.
+  const BMIDatePicker({
     Key? key,
     required this.label,
     required this.controller,
     this.onChange,
   }) : super(key: key);
 
+  /// The input field label.
   final String label;
+
+  /// The input field controller.
   final TextEditingController controller;
+
+  /// The callback function to execute when the user selects a date.
   final Function(String value)? onChange;
 
   @override
-  State<BMIDateTimePicker> createState() => _BMIDateTimePickerState();
+  State<BMIDatePicker> createState() => _BMIDatePickerState();
 }
 
-class _BMIDateTimePickerState extends State<BMIDateTimePicker> {
+class _BMIDatePickerState extends State<BMIDatePicker> {
+  /// The color theme of the date picker.
+  final _colorTheme = KColor.kPrimaryColor;
+
+  /// The first date of the date picker.
+  final _firstDate = 1920;
+
+  /// The last date of the date picker.
+  final _lastDate = DateTime.now();
+
+  /// The initial date of the date picker.
+  final _initialDate = DateTime.now();
+
+  /// Opens a date picker dialog and sets the selected date in the input field.
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1920),
-      lastDate: DateTime.now(),
+      initialDate: _initialDate,
+      firstDate: DateTime(_firstDate),
+      lastDate: _lastDate,
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: ThemeData.light().copyWith(
-            primaryColor: KColor.kPrimaryColor,
-            colorScheme: const ColorScheme.light(primary: KColor.kPrimaryColor),
+            primaryColor: _colorTheme,
+            colorScheme: ColorScheme.light(primary: _colorTheme),
           ),
           child: child!,
         );
@@ -54,9 +78,7 @@ class _BMIDateTimePickerState extends State<BMIDateTimePicker> {
       controller: widget.controller,
       type: TextInputType.datetime,
       readOnly: true,
-      onTap: () {
-        _selectDate(context);
-      },
+      onTap: () => _selectDate(context),
     );
   }
 }

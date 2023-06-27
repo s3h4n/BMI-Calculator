@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:zodz_bmi_calculator/constants/const.dart';
 
-class WeightSliderThumbShape extends SliderComponentShape {
-  final double thumbRadius;
-  final int min;
-  final int max;
-  final double sliderValue;
-
-  WeightSliderThumbShape({
+/// Custom thumb shape for the weight slider in BMI Calculator app.
+class BMISliderThumbShape extends SliderComponentShape {
+  /// Creates a custom [BMISliderThumbShape].
+  BMISliderThumbShape({
     required this.thumbRadius,
     this.min = 0,
     this.max = 10,
     required this.sliderValue,
   });
+
+  /// The radius of the thumb.
+  final double thumbRadius;
+
+  /// The minimum value of the slider.
+  final int min;
+
+  /// The maximum value of the slider.
+  final int max;
+
+  /// The current value of the slider.
+  final double sliderValue;
 
   @override
   Size getPreferredSize(bool isEnabled, bool isDiscrete) {
@@ -52,7 +61,9 @@ class WeightSliderThumbShape extends SliderComponentShape {
       textAlign: TextAlign.center,
       textDirection: TextDirection.ltr,
     );
+
     textPainter.layout();
+
     final textCenter = Offset(
       thumbPosition - (textPainter.width / 2),
       center.dy - (textPainter.height / 2),

@@ -6,6 +6,7 @@ import 'package:zodz_bmi_calculator/views/screens/result_screen.dart';
 import 'package:zodz_bmi_calculator/views/widgets/bmi_appbar.dart';
 import 'package:zodz_bmi_calculator/views/widgets/bmi_calculate_btn.dart';
 import 'package:zodz_bmi_calculator/views/widgets/bmi_date_picker.dart';
+import 'package:zodz_bmi_calculator/views/widgets/bmi_dialog.dart';
 import 'package:zodz_bmi_calculator/views/widgets/bmi_drawer.dart';
 import 'package:zodz_bmi_calculator/views/widgets/bmi_measuerment_input.dart';
 import 'package:zodz_bmi_calculator/views/widgets/bmi_select_gender.dart';
@@ -21,22 +22,23 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final UserModel user = UserModel();
 
-  final String _uDOBLabel = "Date of Birth";
-  final String _uNameLabel = "Your Name";
-  final String _uAddrLine1Label = "Address Line 01";
-  final String _uAddrLine2Label = "Address Line 02";
-  final String _uAddrTownLabel = "Town";
-  final String _uGenderLabel = "Gender";
-  final String _uGenderMaleLabel = "Male";
-  final String _uGenderFemaleLabel = "Female";
-  final String _uGenderMaleImage = "assets/images/maleavatar.png";
-  final String _uGenderFemaleImage = "assets/images/femaleavatar.png";
-  final String _uWeightLabel = "Weight (kg)";
-  final String _uHeightLabel = "Height (cm)";
-  final double _minWeightValue = 10.0;
-  final double _maxWeightValue = 210.0;
-  final double _minHeightValue = 80.0;
-  final double _maxHeightValue = 280.0;
+  final _uDOBLabel = "Date of Birth";
+  final _uNameLabel = "Your Name";
+  final _uAddrLine1Label = "Address Line 01";
+  final _uAddrLine2Label = "Address Line 02";
+  final _uAddrTownLabel = "Town";
+  final _uGenderLabel = "Gender";
+  final _uGenderMaleLabel = "Male";
+  final _uGenderFemaleLabel = "Female";
+  final _uGenderMaleImage = "assets/images/maleavatar.png";
+  final _uGenderFemaleImage = "assets/images/femaleavatar.png";
+  final _uWeightLabel = "Weight (kg)";
+  final _uHeightLabel = "Height (cm)";
+  final _minWeightValue = 10.0;
+  final _maxWeightValue = 210.0;
+  final _minHeightValue = 80.0;
+  final _maxHeightValue = 280.0;
+  final _background = KColor.kAccentColor;
 
   final TextEditingController _uDOBController = TextEditingController();
   final TextEditingController _uNameController = TextEditingController();
@@ -49,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        backgroundColor: KColor.kAccentColor,
+        backgroundColor: _background,
         appBar: const BMIAppBar(),
         body: SingleChildScrollView(
           child: Container(
@@ -100,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 KLayout.kAddYGap,
 
                 /// Get user's date of birth.
-                BMIDateTimePicker(
+                BMIDatePicker(
                   label: _uDOBLabel,
                   controller: _uDOBController,
                   onChange: (value) => user.dob.value = value,
@@ -211,11 +213,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         /// Drawer to display app information.
-        endDrawer: const BMIDrawer(),
+        endDrawer: BMIDrawer(),
 
         /// Create a bottom navigation bar which holds a button to next screen.
         bottomNavigationBar: Container(
-          color: KColor.kAccentColor,
+          color: _background,
           padding: KLayout.kPaddingAll,
           child: BMICalculateButton(
             onClick: () {
@@ -231,45 +233,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 /// Open results screen in a bottom sheet.
                 showModalBottomSheet(
-                  backgroundColor: KColor.kAccentColor,
+                  backgroundColor: _background,
                   isScrollControlled: true,
                   enableDrag: true,
-                  barrierColor: KColor.kAccentColor,
+                  barrierColor: _background,
                   useSafeArea: true,
                   context: context,
-                  builder: (context) {
-                    return ResultScreen(user: user);
-                  },
+                  builder: (context) => ResultScreen(user: user),
                 );
               } else {
                 showDialog(
                   context: context,
-                  builder: (context) {
-                    return Dialog(
-                      elevation: 0,
-                      child: Container(
-                        padding: KLayout.kLargePaddingAll,
-                        alignment: Alignment.center,
-                        height: 164,
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.error,
-                              color: KColor.kPrimaryColor,
-                              size: 64,
-                            ),
-                            KLayout.kAddYGap,
-                            Text(
-                              "Please fill out all the details.",
-                              style: KFont.kBody,
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+                  builder: (context) => const BMIDialog(),
                 );
               }
             },

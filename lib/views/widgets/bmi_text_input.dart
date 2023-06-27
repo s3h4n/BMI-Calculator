@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:zodz_bmi_calculator/constants/const.dart';
 
+/// A custom text input widget for BMI Calculator app.
 class BMITextInput extends StatelessWidget {
+  /// Creates a custom [BMITextInput].
   const BMITextInput({
     Key? key,
     required this.label,
@@ -15,13 +16,28 @@ class BMITextInput extends StatelessWidget {
     this.onChange,
   }) : super(key: key);
 
+  /// The label of the text input.
   final String label;
+
+  /// The controller to handle the text input.
   final TextEditingController controller;
+
+  /// The type of the keyboard input.
   final TextInputType type;
+
+  /// The maximum length of the input text.
   final int max;
+
+  /// Whether the input is read-only.
   final bool readOnly;
+
+  /// The callback function when editing is completed.
   final VoidCallback? onEditingComplete;
+
+  /// The callback function when the input is tapped.
   final VoidCallback? onTap;
+
+  /// The callback function when the input value is changed.
   final ValueChanged<String>? onChange;
 
   @override
@@ -32,9 +48,6 @@ class BMITextInput extends StatelessWidget {
         Text(label, style: KFont.kBody),
         KLayout.kAddHalfYGap,
         TextField(
-          inputFormatters: [
-            FilteringTextInputFormatter.allow(RegExp(r"^[A-Za-z\s]+$")),
-          ],
           controller: controller,
           style: KFont.kBodyBold,
           decoration: KTheme.kInputBorder,
