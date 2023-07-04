@@ -233,10 +233,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 /// Open results screen in a bottom sheet.
                 showModalBottomSheet(
-                  backgroundColor: _background,
+                  elevation: 0,
                   isScrollControlled: true,
                   enableDrag: true,
-                  barrierColor: _background,
+                  showDragHandle: true,
                   useSafeArea: true,
                   context: context,
                   builder: (context) => ResultScreen(user: user),

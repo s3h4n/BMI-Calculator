@@ -35,7 +35,6 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _background,
-      appBar: BMIAppBar(title: _screenTitle),
       body: SingleChildScrollView(
         child: Container(
           margin: KLayout.kMarginAll,
