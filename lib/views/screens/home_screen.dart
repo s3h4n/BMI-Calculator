@@ -39,12 +39,27 @@ class _HomeScreenState extends State<HomeScreen> {
   final _minHeightValue = 80.0;
   final _maxHeightValue = 280.0;
   final _background = KColor.kWhite;
+  final _emptyFormMessage = "Please fill out all the details.";
+  final _invalidNameMessage = "Name can only contain letters.";
 
   final TextEditingController _uDOBController = TextEditingController();
   final TextEditingController _uNameController = TextEditingController();
   final TextEditingController _uAddrLine1Controller = TextEditingController();
   final TextEditingController _uAddrLine2Controller = TextEditingController();
   final TextEditingController _uAddrTownController = TextEditingController();
+
+  void refresh() {
+    _uDOBController.text = "";
+    _uNameController.text = "";
+    _uAddrLine1Controller.text = "";
+    _uAddrLine2Controller.text = "";
+    _uAddrTownController.text = "";
+    user.height.value = 172;
+    user.weight.value = 60;
+    setState(() {
+      user.gender.value = 3;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -215,37 +230,56 @@ class _HomeScreenState extends State<HomeScreen> {
         /// Drawer to display app information.
         endDrawer: BMIDrawer(),
 
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Clear the form.
+            refresh();
+          },
+          backgroundColor: KColor.kBlack,
+          foregroundColor: KColor.kWhite,
+          elevation: 0,
+          child: const Icon(Icons.refresh),
+        ),
+
         /// Create a bottom navigation bar which holds a button to next screen.
         bottomNavigationBar: Container(
           color: _background,
           padding: KLayout.kPaddingAll,
           child: BMICalculateButton(
             onClick: () {
-              /// If all input fields are not empty.
-              if (_uDOBController.text.trim().isNotEmpty &&
-                  _uNameController.text.trim().isNotEmpty &&
-                  _uAddrLine1Controller.text.trim().isNotEmpty &&
-                  _uAddrLine2Controller.text.trim().isNotEmpty &&
-                  _uAddrTownController.text.trim().isNotEmpty &&
-                  user.gender.value != 3) {
-                /// Update users results.
-                user.update();
-
-                /// Open results screen in a bottom sheet.
-                showModalBottomSheet(
-                  elevation: 0,
-                  isScrollControlled: true,
-                  enableDrag: true,
-                  showDragHandle: true,
-                  useSafeArea: true,
-                  context: context,
-                  builder: (context) => ResultScreen(user: user),
-                );
-              } else {
+              if (!RegExp(r'^[a-zA-Z]+$')
+                  .hasMatch(_uNameController.text.trim())) {
                 showDialog(
                   context: context,
-                  builder: (context) => const BMIDialog(),
+                  builder: (context) => BMIDialog(message: _invalidNameMessage),
                 );
+              } else {
+                /// If all input fields are not empty.
+                if (_uDOBController.text.trim().isNotEmpty &&
+                    _uNameController.text.trim().isNotEmpty &&
+                    _uAddrLine1Controller.text.trim().isNotEmpty &&
+                    _uAddrLine2Controller.text.trim().isNotEmpty &&
+                    _uAddrTownController.text.trim().isNotEmpty &&
+                    user.gender.value != 3) {
+                  /// Update users results.
+                  user.update();
+
+                  /// Open results screen in a bottom sheet.
+                  showModalBottomSheet(
+                    elevation: 0,
+                    isScrollControlled: true,
+                    enableDrag: true,
+                    showDragHandle: true,
+                    useSafeArea: true,
+                    context: context,
+                    builder: (context) => ResultScreen(user: user),
+                  );
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) => BMIDialog(message: _emptyFormMessage),
+                  );
+                }
               }
             },
           ),

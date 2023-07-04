@@ -4,7 +4,7 @@ import 'package:zodz_bmi_calculator/constants/const.dart';
 /// A custom dialog widget for BMI Calculator app.
 class BMIDialog extends StatelessWidget {
   /// Creates a custom [BMIDialog].
-  const BMIDialog({super.key});
+  const BMIDialog({super.key, required this.message});
 
   /// The height of the dialog box.
   final _dialogHeight = 164.0;
@@ -22,7 +22,7 @@ class BMIDialog extends StatelessWidget {
   final _dialogIconHeight = 64.0;
 
   /// The content of the dialog box.
-  final _dialogMessage = "Please fill out all the details.";
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class BMIDialog extends StatelessWidget {
             ),
             KLayout.kAddYGap,
             Text(
-              _dialogMessage,
+              message,
               style: KFont.kBody,
               textAlign: TextAlign.center,
             ),
