@@ -249,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: BMICalculateButton(
             onClick: () {
               // Validate name.
-              if (!RegExp(r'^[a-zA-Z]+$')
+              if (!RegExp(r'^[a-zA-Z ]+$')
                   .hasMatch(_uNameController.text.trim())) {
                 showDialog(
                   context: context,
