@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:zodz_bmi_calculator/constants/const.dart';
 import 'package:get/get.dart';
 import 'package:zodz_bmi_calculator/models/user_model.dart';
-import 'package:zodz_bmi_calculator/views/widgets/bmi_appbar.dart';
 
 class ResultScreen extends StatelessWidget {
   ResultScreen({
@@ -11,7 +10,6 @@ class ResultScreen extends StatelessWidget {
   }) : super(key: key);
 
   final UserModel user;
-  final _screenTitle = "BMI Results";
   final _bmiLabel = "BMI Score";
   final _ageLabel = "Age";
   final _heightLabel = "Height";
