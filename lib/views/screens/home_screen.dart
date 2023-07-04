@@ -248,21 +248,22 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: KLayout.kPaddingAll,
           child: BMICalculateButton(
             onClick: () {
-              // Validate name.
-              if (!RegExp(r'^[a-zA-Z ]+$')
-                  .hasMatch(_uNameController.text.trim())) {
-                showDialog(
-                  context: context,
-                  builder: (context) => BMIDialog(message: _invalidNameMessage),
-                );
-              } else {
-                /// If all input fields are not empty.
-                if (_uDOBController.text.trim().isNotEmpty &&
-                    _uNameController.text.trim().isNotEmpty &&
-                    _uAddrLine1Controller.text.trim().isNotEmpty &&
-                    _uAddrLine2Controller.text.trim().isNotEmpty &&
-                    _uAddrTownController.text.trim().isNotEmpty &&
-                    user.gender.value != 3) {
+              /// If all input fields are not empty.
+              if (_uDOBController.text.trim().isNotEmpty &&
+                  _uNameController.text.trim().isNotEmpty &&
+                  _uAddrLine1Controller.text.trim().isNotEmpty &&
+                  _uAddrLine2Controller.text.trim().isNotEmpty &&
+                  _uAddrTownController.text.trim().isNotEmpty &&
+                  user.gender.value != 3) {
+                // Validate name.
+                if (!RegExp(r'^[a-zA-Z ]+$')
+                    .hasMatch(_uNameController.text.trim())) {
+                  showDialog(
+                    context: context,
+                    builder: (context) =>
+                        BMIDialog(message: _invalidNameMessage),
+                  );
+                } else {
                   /// Update users results.
                   user.update();
 
@@ -276,12 +277,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     context: context,
                     builder: (context) => ResultScreen(user: user),
                   );
-                } else {
-                  showDialog(
-                    context: context,
-                    builder: (context) => BMIDialog(message: _emptyFormMessage),
-                  );
                 }
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (context) => BMIDialog(message: _emptyFormMessage),
+                );
               }
             },
           ),
