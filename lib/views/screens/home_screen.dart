@@ -48,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _uAddrLine2Controller = TextEditingController();
   final TextEditingController _uAddrTownController = TextEditingController();
 
+  /// [refresh] will reset all input fields.
   void refresh() {
     _uDOBController.text = "";
     _uNameController.text = "";
@@ -230,9 +231,9 @@ class _HomeScreenState extends State<HomeScreen> {
         /// Drawer to display app information.
         endDrawer: BMIDrawer(),
 
+        // Button to refresh the inputs.
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Clear the form.
             refresh();
           },
           backgroundColor: KColor.kBlack,
@@ -247,6 +248,7 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: KLayout.kPaddingAll,
           child: BMICalculateButton(
             onClick: () {
+              // Validate name.
               if (!RegExp(r'^[a-zA-Z]+$')
                   .hasMatch(_uNameController.text.trim())) {
                 showDialog(
